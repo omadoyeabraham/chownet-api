@@ -15,19 +15,19 @@ $router->get('/', function () use ($router) {
     return $router->app->version();
 });
 
-$router->get('/testDatabase', function () {
+$router->post('api/image', 'ImageController@upload');
 
-    App\User::create([
-        'email' => uniqid() . '@example.com',
-        'name' => 'Test User',
-        'password' => 'secret'
-    ]);
+// $router->get('/testDatabase', function () {
+//     App\User::create([
+//         'email' => uniqid() . '@example.com',
+//         'name' => 'Test User',
+//         'password' => 'secret'
+//     ]);
+//     return response()->json(App\User::all());
+// });
 
-    return response()->json(App\User::all());
-});
+// Route::get('/testCache', function () {
+//     Cache::put('someKey', 'foobar', 10);
+//     return Cache::get('someKey');
+// });
 
-Route::get('/testCache', function () {
-    Cache::put('someKey', 'foobar', 10);
-
-    return Cache::get('someKey');
-});
