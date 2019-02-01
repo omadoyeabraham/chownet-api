@@ -5,7 +5,7 @@ services:
       context: .
       dockerfile: web.docker
     volumes:
-      - ./src:/var/www
+      - ./:/var/www
     ports:
       - "8080:80"
     links:
@@ -16,7 +16,7 @@ services:
       context: .
       dockerfile: app.docker
     volumes:
-      - ./src:/var/www
+      - ./:/var/www
     links:
       - database
       - cache
