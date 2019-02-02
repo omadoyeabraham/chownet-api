@@ -3,6 +3,9 @@
 namespace App\Repositories;
 
 use Cloudinary;
+use Cloudinary\Uploader as CloudinaryUploader;
+
+use App\Events\ImageUploadedEvent;
 
 class ImageRepository implements ImageRepositoryInterface
 {
@@ -10,9 +13,9 @@ class ImageRepository implements ImageRepositoryInterface
     {
         Cloudinary::config(
             [
-                'cloud_name' => 'omadoyeabraham',
-                'api_key' => '471377665711894',
-                'api_secret' => 'gz3FwD-WuTwLPbUzQwqiKz5eI2U'
+                'cloud_name' => env('CLOUDINARY_CLOUD_NAME'),
+                'api_key' => env('CLOUDINARY_API_KEY'),
+                'api_secret' => env('CLOUDINARY_API_SECRET')
             ]
         );
     }
@@ -27,7 +30,16 @@ class ImageRepository implements ImageRepositoryInterface
      */
     public function upload($file, $tags)
     {
-        // TODO: Implement upload() method.
-        dd("In the upload method");
+        $cloudinaryUploadPreset = env('CLOUDINARY_UPLOAD_PRESET');
+        $options = [
+            'tags' => $tags
+        ];
+
+        $uploadResponse = CloudinaryUploader::unsigned_upload($file, $cloudinaryUploadPreset, $options);
+
+        // Dispatch the image uploaded event so that listeners can handle it appropriately.
+        event(new ImageUploadedEvent($uploadResponse));
+
+        return $uploadResponse;
     }
 }

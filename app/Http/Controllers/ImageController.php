@@ -23,7 +23,12 @@ class ImageController extends Controller
     public function upload(Request $request)
     {
         $data = $request->all();
+        $tags = [];
 
-        return response()->json($this->imageRepository->upload($data['image'], $data['tags']));
+        foreach($data['tags'] as $tag) {
+            array_push($tags, $tag['name']);
+        }
+
+        return response()->json($this->imageRepository->upload($data['image'], $tags));
     }
 }

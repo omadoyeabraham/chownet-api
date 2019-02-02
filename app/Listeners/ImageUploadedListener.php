@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\ExampleEvent;
+use App\Events\ImageUploadedEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class ExampleListener
+class ImageUploadedListener
 {
     /**
      * Create the event listener.
@@ -21,11 +21,10 @@ class ExampleListener
     /**
      * Handle the event.
      *
-     * @param  ExampleEvent  $event
-     * @return void
+     * @param ImageUploadedEvent $event
      */
-    public function handle(ExampleEvent $event)
+    public function handle(ImageUploadedEvent $event)
     {
-        //
+        dd($event);
     }
 }
