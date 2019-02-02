@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use Cloudinary;
 
-class ImageRepository
+class ImageRepository implements ImageRepositoryInterface
 {
     public function __construct()
     {
@@ -17,8 +17,17 @@ class ImageRepository
         );
     }
 
-    public function upload($file)
-    {
 
+    /**
+     * Upload an image to the data store (cloudinary)
+     *
+     * @param $file
+     * @param $tags
+     * @return mixed
+     */
+    public function upload($file, $tags)
+    {
+        // TODO: Implement upload() method.
+        dd("In the upload method");
     }
 }

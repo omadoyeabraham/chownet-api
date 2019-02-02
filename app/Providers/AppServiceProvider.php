@@ -4,6 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
+use App\Repositories\ImageRepository;
+use App\Repositories\ImageRepositoryInterface;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -13,6 +16,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(ImageRepositoryInterface::class, ImageRepository::class);
     }
 }
