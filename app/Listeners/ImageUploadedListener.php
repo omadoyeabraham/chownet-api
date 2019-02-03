@@ -5,10 +5,8 @@ namespace App\Listeners;
 use App\Events\ImageUploadedEvent;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Log;
 
-class ImageUploadedListener implements ShouldQueue
+class ImageUploadedListener
 {
     /**
      * The name of the connection the job should be sent to.
@@ -48,8 +46,7 @@ class ImageUploadedListener implements ShouldQueue
      */
     public function handle(ImageUploadedEvent $event)
     {
-        Log::info("The handle was called");
-        Cache::put('someKey222', 'foobarzzzzzzzz', 10);
+        // Handle the image response after an image is uploaded successfully.
     }
 
     /**
@@ -61,6 +58,6 @@ class ImageUploadedListener implements ShouldQueue
      */
     public function failed(ImageUploadedEvent $event, $exception)
     {
-        Log::info($event);
+
     }
 }
