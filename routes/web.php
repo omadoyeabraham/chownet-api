@@ -28,6 +28,12 @@ $router->post('api/image', 'ImageController@upload');
 
 // Route::get('/testCache', function () {
 //     Cache::put('someKey', 'foobar', 10);
-//     return Cache::get('someKey');
+//     \Illuminate\Support\Facades\Redis::set('name', 'Taylor');
+//     \Illuminate\Support\Facades\Redis::set('name2', 'Taylor');
+//     \Illuminate\Support\Facades\Redis::set('name3', 'Taylor');
+//     \Illuminate\Support\Facades\Redis::set('name4', 'Taylor');
+//     \Illuminate\Support\Facades\Redis::set('name5', 'Taylor');
+//     \Illuminate\Support\Facades\Redis::set('name6', 'Taylor');
+//     return Cache::get('someKey222');
 // });
 
