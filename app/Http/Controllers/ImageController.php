@@ -23,12 +23,18 @@ class ImageController extends Controller
     public function upload(Request $request)
     {
         $data = $request->all();
-        $tags = [];
+        $tags = collect($data['tags'])->pluck('name')->toArray();
 
-        foreach($data['tags'] as $tag) {
-            array_push($tags, $tag['name']);
+        try{
+            $this->imageRepository->upload($data['image'], $tags);
+
+            return response()->json([
+                "message" => "Image has been uploaded succesfully"
+            ], 200);
+        }catch (\Exception $e) {
+            return response()->json([
+                "message" => "An error occured while uploading the image",
+            ], 500);
         }
-
-        return response()->json($this->imageRepository->upload($data['image'], $tags));
     }
 }

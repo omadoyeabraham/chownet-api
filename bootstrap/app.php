@@ -83,6 +83,8 @@ $app->singleton(
  $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Illuminate\Redis\RedisServiceProvider::class);
 
+$app->register('Sentry\Laravel\LumenServiceProvider');
+
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -93,6 +95,7 @@ $app->register(Illuminate\Redis\RedisServiceProvider::class);
 | can respond to, as well as the controllers that may handle them.
 |
  */
+
 
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
